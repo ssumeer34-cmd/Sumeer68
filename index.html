@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dream Homes - Real Estate | Buy, Sell, Rent</title>
+<meta name="description" content="Find your dream home in Jammu. Flats, Plots, Villas available.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Segoe UI',Arial,sans-serif;background:#0f172a;color:#1e293b;overflow-x:hidden}
+
+/* 3D Animated Background */
+.bg-animation{
+  position:fixed;top:0;left:0;width:100%;height:100%;z-index:-1;
+  background:linear-gradient(45deg,#0f172a,#1e1b4b,#312e81,#0f172a);
+  background-size:400% 400%;animation:gradientShift 15s ease infinite;
+}
+@keyframes gradientShift{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.cube{position:absolute;width:60px;height:60px;transform-style:preserve-3d;animation:float 20s infinite linear}
+.cube div{position:absolute;width:60px;height:60px;background:rgba(102,126,234,0.1);border:1px solid rgba(102,126,234,0.3)}
+.cube .front{transform:translateZ(30px)}
+.cube .back{transform:rotateY(180deg) translateZ(30px)}
+.cube .right{transform:rotateY(90deg) translateZ(30px)}
+.cube .left{transform:rotateY(-90deg) translateZ(30px)}
+.cube .top{transform:rotateX(90deg) translateZ(30px)}
+.cube .bottom{transform:rotateX(-90deg) translateZ(30px)}
+@keyframes float{
+  0%{transform:translateY(100vh) rotateX(0deg) rotateY(0deg)}
+  100%{transform:translateY(-100vh) rotateX(720deg) rotateY(360deg)}
+}
+
+.header{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);box-shadow:0 2px 10px rgba(0,0,0,0.1);position:fixed;width:100%;top:0;z-index:1000;padding:15px 5%;display:flex;justify-content:space-between;align-items:center}
+.logo{font-size:1.8rem;font-weight:800;color:#0ea5e9}
+.logo span{color:#f59e0b}
+.nav a{margin:0 15px;text-decoration:none;color:#334155;font-weight:500}
+.nav a:hover{color:#0ea5e9}
+.btn-call{background:#25d366;color:white;padding:10px 20px;border-radius:8px;text-decoration:none;font-weight:600}
+.hero{background:linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0.5)),url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=1200') center/cover;color:white;padding:160px 5% 80px;text-align:center}
+.hero h1{font-size:3rem;margin-bottom:15px;text-shadow:0 0 20px rgba(0,0,0,0.5)}
+.search-box{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);padding:25px;border-radius:12px;max-width:900px;margin:30px auto 0;box-shadow:0 10px 30px rgba(0,0,0,0.3);display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:15px}
+.search-box select,.search-box button{padding:12px;border:1px solid #cbd5e1;border-radius:8px;font-size:1rem}
+.search-box button{background:#0ea5e9;color:white;border:none;cursor:pointer;font-weight:600}
+.section{padding:60px 5%;max-width:1300px;margin:auto;position:relative}
+.section h2{text-align:center;font-size:2.3rem;margin-bottom:40px;color:white;text-shadow:0 0 10px rgba(102,126,234,0.5)}
+.property-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:25px}
+.property-card{background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-radius:12px;overflow:hidden;box-shadow:0 8px 32px rgba(0,0,0,0.3);transition:0.3s}
+.property-card:hover{transform:translateY(-10px) scale(1.02)}
+.property-card img{width:100%;height:220px;object-fit:cover}
+.property-info{padding:20px}
+.property-price{color:#0ea5e9;font-size:1.5rem;font-weight:700;margin:10px 0}
+.property-details{display:flex;gap:15px;color:#64748b;font-size:0.9rem;margin:10px 0}
+.tag{background:#fef3c7;color:#92400e;padding:4px 12px;border-radius:20px;font-size:0.8rem;font-weight:600;display:inline-block}
+.btn-view{width:100%;background:#0ea5e9;color:white;padding:10px;border:none;border-radius:8px;margin-top:15px;cursor:pointer;font-weight:600}
+.btn-wa{background:#25d366;color:white;padding:10px;border:none;border-radius:8px;margin-top:10px;cursor:pointer;font-weight:600;width:48%;display:inline-block;text-align:center;text-decoration:none}
+.btn-call-card{background:#0ea5e9;color:white;padding:10px;border:none;border-radius:8px;margin-top:10px;cursor:pointer;font-weight:600;width:48%;display:inline-block;text-align:center;text-decoration:none;margin-left:4%}
+.btn-wa:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(37,211,102,0.4)}
+.btn-call-card:hover{transform:scale(1.05);box-shadow:0 5px 15px rgba(14,165,233,0.4)}
+.why-us{background:rgba(239,246,255,0.1);backdrop-filter:blur(10px);border-radius:15px}
+.features{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:30px;text-align:center}
+.feature h3{color:#0ea5e9;margin:15px 0}
+.feature p{color:#e2e8f0}
+.contact{background:rgba(30,41,59,0.9);backdrop-filter:blur(10px);border-radius:15px;color:white}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px}
+.contact-form input,.contact-form select{width:100%;padding:12px;margin:8px 0;border-radius:8px;border:1px solid #475569;background:#334155;color:white}
+footer{background:rgba(15,23,42,0.9);color:#94a3b8;text-align:center;padding:30px 5%;backdrop-filter:blur(10px)}
+@media(max-width:768px){.nav{display:none}.hero h1{font-size:2rem}.btn-call-card{margin-left:0;width:100%;margin-top:10px}.btn-wa{width:100%}}
+</style>
+</head>
+<body>
+<!-- 3D Background -->
+<div class="bg-animation"></div>
+<div class="cube" style="left:10%;animation-delay:0s"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
+<div class="cube" style="left:30%;animation-delay:3s;animation-duration:25s"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
+<div class="cube" style="left:50%;animation-delay:6s;animation-duration:18s"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
+<div class="cube" style="left:70%;animation-delay:9s;animation-duration:22s"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
+<div class="cube" style="left:90%;animation-delay:12s"><div class="front"></div><div class="back"></div><div class="right"></div><div class="left"></div><div class="top"></div><div class="bottom"></div></div>
+
+<header class="header">
+  <div class="logo">Dream<span>Homes</span></div>
+  <nav class="nav">
+    <a href="#home">Home</a>
+    <a href="#properties">Properties</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <a href="tel:+918082793536" class="btn-call">📞 Call Now</a>
+</header>
+<section class="hero" id="home">
+  <h1>Find Your Dream Home</h1>
+  <p>500+ Verified Properties in Jammu | Buy | Sell | Rent</p>
+  <div class="search-box">
+    <select id="location">
+      <option>Select Location</option>
+      <option>Jammu</option><option>Vijaypur</option>
+      <option>Jammu</option><option>Treva</option>
+    </select>
+    <select id="type">
+      <option>Property Type</option>
+      <option>1 BHK</option><option>2 BHK</option>
+      <option>3 BHK</option><option>Villa</option><option>Plot</option>
+    </select>
+    <select id="budget">
+      <option>Budget</option>
+      <option>Under 50 Lac</option><option>50L - 1 Cr</option>
+      <option>1 Cr - 2 Cr</option><option>Above 2 Cr</option>
+    </select>
+    <button onclick="filterProperties()">Search Property</button>
+  </div>
+</section>
+<section class="section" id="properties">
+  <h2>Featured Properties</h2>
+  <div class="property-grid" id="propertyList">
+    <div class="property-card" data-location="Jammu" data-type="3 BHK" data-price="85">
+      <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600" alt="3BHK Flat">
+      <div class="property-info">
+        <span class="tag">For Sale</span>
+        <h3>3 BHK Luxury Flat - Sector 62 Noida</h3>
+        <div class="property-price">₹85 Lakh</div>
+        <div class="property-details">
+          <span>🛏️ 3 Beds</span><span>🛁 2 Baths</span><span>📐 1450 sqft</span>
+        </div>
+        <p style="color:#64748b;font-size:0.9rem">Near Metro, Club House, 24x7 Security</p>
+        <a href="https://wa.me/918082793536?text=Hi, I'm interested in 3 BHK Rs pura Jammu" class="btn-wa">WhatsApp</a>
+        <a href="tel:+918082793536" class="btn-call-card">Call Now</a>
+        <button class="btn-view" onclick="showEnquiry('3 BHK Sector 62 Noida')">Enquire Now</button>
+      </div>
+    </div>
+    <div class="property-card" data-location="Vijaypur" data-type="2 BHK" data-price="65">
+      <img src="https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600" alt="2BHK Flat">
+      <div class="property-info">
+        <span class="tag" style="background:#dcfce7;color:#166534">For Rent</span>
+        <h3>2 BHK Semi-Furnished - DLF Phase 3</h3>
+        <div class="property-price">₹35,000/month</div>
+        <div class="property-details">
+          <span>🛏️ 2 Beds</span><span>🛁 2 Baths</span><span>📐 1100 sqft</span>
+        </div>
+        <p style="color:#64748b;font-size:0.9rem">Near Cyber City, Power Backup house Jammu</p>
+        <a href="https://wa.me/918082793536?text=Hi, I'm interested in 2 BHK DLF Phase 3" class="btn-wa">WhatsApp</a>
+        <a href="tel:+918082793536" class="btn-call-card">Call Now</a>
+        <button class="btn-view" onclick="showEnquiry('2 BHK DLF Phase 3')">Enquire Now</button>
+      </div>
+    </div>
+    <div class="property-card" data-location="Jammu" data-type="Villa" data-price="250">
+      <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=600" alt="Villa">
+      <div class="property-info">
+        <span class="tag">For Sale</span>
+        <h3>4 BHK Independent Villa - karan Nagar Jammu</h3>
+        <div class="property-price">₹2.5 Crore</div>
+        <div class="property-details">
+          <span>🛏️ 4 Beds</span><span>🛁 4 Baths</span><span>📐 2500 sqft</span>
+        </div>
+        <p style="color:#64748b;font-size:0.9rem">Private Garden, Parking, Gated Society</p>
+        <a href="https://wa.me/918082793536?text=Hi, I'm interested in 4 BHK Villa South Delhi" class="btn-wa">WhatsApp</a>
+        <a href="tel:+918082793536" class="btn-call-card">Call Now</a>
+        <button class="btn-view" onclick="showEnquiry('4 BHK Villa South Delhi')">Enquire Now</button>
+      </div>
+    </div>
+    <div class="property-card" data-location="Jammu" data-type="Plot" data-price="45">
+      <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?w=600" alt="Plot">
+      <div class="property-info">
+        <span class="tag">For Sale</span>
+        <h3>Residential Plot - Jammu Extension</h3>
+        <div class="property-price">₹45 Lakh</div>
+        <div class="property-details">
+          <span>📐 150 sq yards</span><span>🏛️ Approved</span><span>🛣️ Corner Plot</span>
+        </div>
+        <p style="color:#64748b;font-size:0.9rem">Authority Plot, Loan Available</p>
+        <a href="https://wa.me/918082793536?text=Hi, I'm interested in Plot Jammu  Extension" class="btn-wa">WhatsApp</a>
+        <a href="tel:+918082793536" class="btn-call-card">Call Now</a>
+        <button class="btn-view" onclick="showEnquiry('Plot Jammu Extension')">Enquire Now</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gallery">
+  <h2>Project Gallery</h2>
+  <div class="gallery-grid" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:15px">
+    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=500" alt="Living Room" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?w=500" alt="Modular Kitchen" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500" alt="Master Bedroom" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=500" alt="Bathroom" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1600566752355-35792bedcfea?w=500" alt="Balcony View" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1600047509782-20d39509f26d?w=500" alt="Club House" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=500" alt="Swimming Pool" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+    
+    <img src="https://images.unsplash.com/photo-1560440021-33f9b867899d?w=500" alt="Gym" style="width:100%;height:250px;object-fit:cover;border-radius:12px;transition:0.3s;cursor:pointer" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
+  </div>
+</section>
+
+<section class="section why-us" id="services">
+  <h2>Why Choose Dream Homes?</h2>
+  <div class="features">
+    <div class="feature"><h3>✅ 100% Verified</h3><p>All properties verified with legal documents</p></div>
+    <div class="feature"><h3>💰 Best Price</h3><p>Direct from builder. No brokerage on many projects</p></div>
+    <div class="feature"><h3>🏦 Loan Support</h3><p>Tie-up with 20+ banks. Easy home loan approval</p></div>
+    <div class="feature"><h3>🤝 After Sale Service</h3><p>Registry to possession, we handle everything</p></div>
+  </div>
+</section>
+<section class="section contact" id="contact">
+  <h2 style="color:white">Get Free Consultation</h2>
+  <div class="contact-grid">
+    <div>
+      <h3>Office Address</h3>
+      <p style="margin:20px 0">📍   RS Puram Jammu 181131</p>
+      <p style="margin:20px 0">📞 +91 80827 93536</p>
+      <p style="margin:20px 0">📧 ssumeer34@gmail.com</p>
+      <p style="margin:20px 0">⏰ Mon-Sun: 10AM - 8PM</p>
+      <a href="https://wa.me/918082793536" class="btn-call" style="display:inline-block;margin-top:15px">💬 WhatsApp Us</a>
+    </div>
+    <form class="contact-form" id="enquiryForm" onsubmit="submitEnquiry(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="tel" id="phone" placeholder="Mobile Number" required>
+      <select id="interest">
+        <option>I am interested in</option>
+        <option>Buying Property</option><option>Selling Property</option>
+        <option>Renting Property</option><option>Home Loan</option>
+      </select>
+      <input type="text" id="message" placeholder="Budget & Location">
+      <button type="submit" class="btn-view" style="background:#f59e0b">Request Call Back</button>
+    </form>
+  </div>
+</section>
+<footer>
+  <p>© 2026 Dream Homes Realty. RERA Reg: UP12345678 | All Rights Reserved</p>
+</footer>
+<script>
+function filterProperties(){
+  let loc = document.getElementById('location').value;
+  let type = document.getElementById('type').value;
+  let cards = document.querySelectorAll('.property-card');
+  cards.forEach(card => {
+    let cardLoc = card.dataset.location;
+    let cardType = card.dataset.type;
+    let show = true;
+    if(loc !== 'Select Location' && cardLoc !== loc) show = false;
+    if(type !== 'Property Type' && cardType !== type) show = false;
+    card.style.display = show ? 'block' : 'none';
+  });
+  document.getElementById('properties').scrollIntoView({behavior: 'smooth'});
+}
+function showEnquiry(property){
+  document.getElementById('message').value = 'Interested in: ' + property;
+  document.getElementById('contact').scrollIntoView();
+}
+function submitEnquiry(e){
+  e.preventDefault();
+  let name = document.getElementById('name').value;
+  alert(`Thanks ${name}! Our agent will call you in 10 minutes.`);
+  document.getElementById('enquiryForm').reset();
+}
+</script>
+</body>
+</html>
